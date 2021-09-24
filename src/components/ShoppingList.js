@@ -3,9 +3,12 @@ import Item from "./Item";
 
 function ShoppingList({ items }) {
  const [selectedCategory, setSelectedCategory] = useState("All")
+ let filteredItems =['']
 
- function changeHandler(){
-  setSelectedCategory()
+ function changeHandler(e){
+  setSelectedCategory(e.target.value)
+  let filteredItems = items.filter((item) => item.category === selectedCategory)
+
  }
 
   return (
@@ -19,7 +22,7 @@ function ShoppingList({ items }) {
         </select>
       </div>
       <ul className="Items">
-        {items.map((item) => (
+        {filteredItems.map((item) => (
           <Item key={item.id} name={item.name} category={item.category} />
         ))}
       </ul>
