@@ -7,14 +7,18 @@ function ShoppingList({ items }) {
 
  function changeHandler(e){
   setSelectedCategory(e.target.value)
-  let filteredItems = items.filter((item) => item.category === selectedCategory)
+  
 
  }
-
+ filteredItems = items.filter((item) => {
+  if (selectedCategory === "All") {
+  return true} 
+    else  return item.category === selectedCategory
+  })
   return (
     <div className="ShoppingList">
       <div className="Filter">
-        <select  value={selectedCategory} onChange={changeHandler} name="filter">
+        <select onChange={changeHandler} name="filter">
           <option value="All">Filter by category</option>
           <option value="Produce">Produce</option>
           <option value="Dairy">Dairy</option>
